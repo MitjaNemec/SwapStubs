@@ -24,7 +24,7 @@ import pcbnew
 import os
 import logging
 import sys
-import math
+import swap_stubs
 from .error_dialog_GUI import ErrorDialogGUI
 
 
@@ -43,13 +43,13 @@ class SwapPins(pcbnew.ActionPlugin):
 
         self.frame = None
 
-        self.name = "Swap pins"
+        self.name = "Swap stubs"
         self.category = "Modify Drawing PCB and schematics"
-        self.description = "Swap selected pins"
+        self.description = "Swap labels on selected pins"
         self.icon_file_name = os.path.join(
-            os.path.dirname(__file__), 'swap_pins_light.png')
+            os.path.dirname(__file__), 'swap_stubs_light.png')
         self.dark_icon_file_name = os.path.join(
-            os.path.dirname(__file__), 'swap_pins_dark.png')
+            os.path.dirname(__file__), 'swap_stubs_dark.png')
 
         self.debug_level = logging.INFO
 
@@ -78,7 +78,7 @@ class SwapPins(pcbnew.ActionPlugin):
         for handler in logging.root.handlers[:]:
             logging.root.removeHandler(handler)
 
-        file_handler = logging.FileHandler(filename='swap_pins.log', mode='w')
+        file_handler = logging.FileHandler(filename='swap_stubs.log', mode='w')
         handlers = [file_handler]
 
         # set up logger
@@ -102,7 +102,7 @@ class SwapPins(pcbnew.ActionPlugin):
         # check if there are precisely two pads selected
         selected_pads = [x for x in pcbnew.GetBoard().GetPads() if x.IsSelected()]
         if len(selected_pads) != 2:
-            caption = 'Swap pins'
+            caption = 'Swap stubs'
             message = "More or less than 2 pads selected. Please select exactly two pads and run the script again"
             dlg = wx.MessageDialog(self.frame, message, caption, wx.OK | wx.ICON_INFORMATION)
             dlg.ShowModal()
@@ -114,8 +114,8 @@ class SwapPins(pcbnew.ActionPlugin):
         # are they on the same module
         pad1 = selected_pads[0]
         pad2 = selected_pads[1]
-        if pad1.GetParent().GetReference() != pad2.GetParent().GetReference():
-            caption = 'Swap pins'
+        if pcbnew.Cast_to_FOOTPRINT(pad1.GetParent()).GetReference() != pcbnew.Cast_to_FOOTPRINT(pad2.GetParent()).GetReference():
+            caption = 'Swap stubs'
             message = "Pads don't belong to the same footprint"
             dlg = wx.MessageDialog(self.frame, message, caption, wx.OK | wx.ICON_INFORMATION)
             dlg.ShowModal()
@@ -124,12 +124,13 @@ class SwapPins(pcbnew.ActionPlugin):
             logging.shutdown()
             return
 
-        # swap pins
+        # swap stubs
         try:
-            swap_pins.swap(board, pad1, pad2)
+            swap_stubs.swap(board, pad1, pad2)
             logging.shutdown()
+            return
         except (ValueError, LookupError) as error:
-            caption = 'Swap pins'
+            caption = 'Swap stubs'
             message = str(error)
             dlg = wx.MessageDialog(self.frame, message, caption, wx.ICON_ERROR)
             dlg.ShowModal()
@@ -137,11 +138,11 @@ class SwapPins(pcbnew.ActionPlugin):
             logger.exception("Gracefully handled error while running")
             logging.shutdown()
         except Exception:
-            logger.exception("Fatal error when swapping pins")
-            caption = 'Swap pins'
-            message = "Fatal error when swapping pins.\n"\
+            logger.exception("Fatal error when swapping stubs")
+            caption = 'Swap stubs'
+            message = "Fatal error when swapping stubs.\n"\
                     + "You can raise an issue on GiHub page.\n" \
-                    + "Please attach the swap_pins.log which you should find in the project folder."
+                    + "Please attach the swap_stubs.log which you should find in the project folder."
             dlg = wx.MessageDialog(self.frame, message, caption, wx.OK | wx.ICON_ERROR)
             dlg.ShowModal()
             dlg.Destroy()

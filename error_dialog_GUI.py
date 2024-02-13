@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b)
+## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO *NOT* EDIT THIS FILE!
@@ -18,13 +18,13 @@ import wx.adv
 class ErrorDialogGUI ( wx.Dialog ):
 
     def __init__( self, parent ):
-        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"SwapPins", pos = wx.DefaultPosition, size = wx.Size( 458,212 ), style = wx.DEFAULT_DIALOG_STYLE )
+        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"SwapStubs", pos = wx.DefaultPosition, size = wx.Size( 458,212 ), style = wx.DEFAULT_DIALOG_STYLE )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
         bSizer1 = wx.BoxSizer( wx.VERTICAL )
 
-        self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, u"Fatal error when restoring layout. You can raise an issue on GitHub page.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, u"Fatal error when swapping stubs. You can raise an issue on GitHub page.", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText1.Wrap( -1 )
 
         bSizer1.Add( self.m_staticText1, 0, wx.ALL, 5 )
@@ -37,7 +37,7 @@ class ErrorDialogGUI ( wx.Dialog ):
         self.m_hyperlink1 = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, u"https://github.com/MitjaNemec/SwapPins", u"https://github.com/MitjaNemec/SwapPins", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
         bSizer1.Add( self.m_hyperlink1, 0, wx.ALL, 5 )
 
-        self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, u"Please attach the swap_pins.log which you should find in the project folder.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, u"Please attach the swap_stubs.log which you should find in the project folder.", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText4.Wrap( -1 )
 
         self.m_staticText4.SetMinSize( wx.Size( -1,40 ) )
