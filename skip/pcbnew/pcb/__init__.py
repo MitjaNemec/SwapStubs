@@ -1,1 +1,0 @@
-from skip.pcbnew.pcb.pcb import PCB

@@ -1,6 +1,6 @@
-#  action_swap_pins.py
+#  action_swap_stubs.py
 #
-# Copyright (C) 2024 Mitja Nemec
+# Copyright (C) Mitja Nemec
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import pcbnew
 import os
 import logging
 import sys
-import swap_stubs
+from .swap_stubs import Swapper
 from .error_dialog_GUI import ErrorDialogGUI
 
 
@@ -37,9 +37,9 @@ class ErrorDialog(ErrorDialogGUI):
         super(ErrorDialog, self).__init__(parent)
 
 
-class SwapPins(pcbnew.ActionPlugin):
+class SwapStubs(pcbnew.ActionPlugin):
     def __init__(self):
-        super(SwapPins, self).__init__()
+        super(SwapStubs, self).__init__()
 
         self.frame = None
 
@@ -95,9 +95,14 @@ class SwapPins(pcbnew.ActionPlugin):
 
         sch_frame = wx.FindWindowByName("SchematicFrame")
         if sch_frame is not None:
-            logger.info("Closing schematics")
+            logger.info("Trying to close schematics editor")
             sch_frame.Close()
-            return
+
+            # test if it is closed, if not closed, exit the plugin
+            sch_frame = wx.FindWindowByName("SchematicFrame")
+            if sch_frame is not None:
+                logger.info("Could not close schematics editor")
+                return
 
         # check if there are precisely two pads selected
         selected_pads = [x for x in pcbnew.GetBoard().GetPads() if x.IsSelected()]
@@ -126,7 +131,9 @@ class SwapPins(pcbnew.ActionPlugin):
 
         # swap stubs
         try:
-            swap_stubs.swap(board, pad1, pad2)
+            swapper = Swapper()
+            swapper.swap(board, pad1, pad2)
+            logger.exception("Plugin successfully executed")
             logging.shutdown()
             return
         except (ValueError, LookupError) as error:

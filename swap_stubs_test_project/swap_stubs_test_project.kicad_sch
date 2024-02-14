@@ -1235,7 +1235,7 @@
 			(uuid "56af1104-0a53-46b8-bce9-f4873c79a90e")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "#PWR0104")
 					(unit 1)
@@ -1300,7 +1300,7 @@
 			(uuid "7417585c-9ea0-4b8b-a3d6-75daeb9304dc")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "#PWR0101")
 					(unit 1)
@@ -1365,7 +1365,7 @@
 			(uuid "2911f75b-6f3e-478b-a541-635affe3bd52")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "#PWR0102")
 					(unit 1)
@@ -1486,7 +1486,7 @@
 			(uuid "c6c7607c-b8ac-4069-918f-e95ec5d7ce1c")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "U102")
 					(unit 1)
@@ -1551,7 +1551,7 @@
 			(uuid "24be5e2f-8de1-4cce-b713-7697fc148ac7")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "#PWR0103")
 					(unit 1)
@@ -1672,7 +1672,7 @@
 			(uuid "2e4350a2-ffdf-423e-ab69-c3e48b14fed6")
 		)
 		(instances
-			(project "swap_pins_test_project"
+			(project "swap_stubs_test_project"
 				(path "/d3bdc328-b80b-41ca-a96a-625f4397c573"
 					(reference "U101")
 					(unit 1)

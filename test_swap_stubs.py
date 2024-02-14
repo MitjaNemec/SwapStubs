@@ -15,7 +15,7 @@ class TestSwapStubs(unittest.TestCase):
         logger.info("First swap stub test")
         input_filename = 'swap_stubs_test_project.kicad_pcb'
         out_layout = input_filename.split('.')[0] + "_first" + ".kicad_pcb"
-        out_sch = out_layout.replace(".kicad_pcb", "kicad_sch")
+        out_sch = out_layout.replace(".kicad_pcb", ".kicad_sch")
 
         brd = pcbnew.LoadBoard(input_filename)
 
@@ -24,7 +24,8 @@ class TestSwapStubs(unittest.TestCase):
         pad1 = fp.FindPadByNumber(15)
         pad2 = fp.FindPadByNumber(14)
 
-        brd = swap_stubs.swap(brd, pad1, pad2, out_sch)
+        swapper = swap_stubs.Swapper()
+        brd = swapper.swap(brd, pad1, pad2, out_sch)
         # save the board
         pcbnew.PCB_IO_MGR.Save(pcbnew.PCB_IO_MGR.KICAD_SEXP, out_layout, brd)
 
