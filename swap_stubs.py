@@ -31,12 +31,12 @@ except:
 
 logger = logging.getLogger(__name__)
 
-
+# copied from https://github.com/psychogenic/kicad-skip
 def loadTree(fpath: str):
     with open(fpath, 'r') as f:
         return loads(f.read())
 
-
+# copied from https://github.com/psychogenic/kicad-skip
 def writeTree(fpath: str, tree):
     remove_nones(tree)
     with open(fpath, 'w') as f:
@@ -48,7 +48,7 @@ def writeTree(fpath: str, tree):
             as_str = re.sub(f'\(\s*{elname}', f'\n({elname}', as_str)
         f.write(as_str)
 
-
+# copied from https://github.com/psychogenic/kicad-skip
 def list_splice(target, start, delete_count=None, *items):
     """Remove existing elements and/or add new elements to a list.
 
@@ -70,7 +70,7 @@ def list_splice(target, start, delete_count=None, *items):
 
     return removed
 
-
+# copied from https://github.com/psychogenic/kicad-skip
 def remove_nones(alist):
     targets = []
     for i in range(len(alist)):
