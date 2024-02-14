@@ -1,6 +1,6 @@
 {
     "$schema": "https://go.kicad.org/pcm/schemas/v1",
-    "name": "SwapS",
+    "name": "SwapStubs",
     "description": "Swap stubs",
     "description_full": "Swaps the ratsnest between two pins and also swaps the lables in the schematics to keep the schematis in sync",
     "identifier": "com.github.MitjaNemec.SwapStubs",
@@ -17,7 +17,7 @@
     },
     "tags": [
         "pcbnew",
-        "swap stubs"
+        "swap"
     ],
     "versions": [
         {
