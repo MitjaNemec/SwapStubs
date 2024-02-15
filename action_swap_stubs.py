@@ -97,24 +97,13 @@ class SwapStubs(pcbnew.ActionPlugin):
         sch_frame = wx.FindWindowByName("SchematicFrame")
         logger.info("Sch frame repr: " + repr(sch_frame))
         if sch_frame is not None:
-            logger.info("Trying to close schematics editor")
-            sch_frame.Close()
-
-            # test if it is closed, if not closed, exit the plugin
-            sch_frame = wx.FindWindowByName("SchematicFrame")
-            logger.info("Sch frame repr: " + repr(sch_frame))
-            if sch_frame is not None:
-                caption = 'Swap stubs'
-                message = "Schematics editor might be stil open. If it is, please close the schematics editor manually."
-                dlg = wx.MessageDialog(self.frame, message, caption, wx.OK | wx.ICON_INFORMATION)
-                dlg.ShowModal()
-                dlg.Destroy()
-
-            sch_frame = wx.FindWindowByName("SchematicFrame")
-            logger.info("Sch frame repr: " + repr(sch_frame))
-            if sch_frame is not None:
-                logger.info("Could not close schematics editor, exiting")
-                return
+            caption = 'Swap stubs'
+            message = ("Schematics editor is open. The plugin works only when shematcis editor is closed. \n"
+                       "Please close the schematics editor and rerun the plugin.")
+            dlg = wx.MessageDialog(self.frame, message, caption, wx.OK | wx.ICON_INFORMATION)
+            dlg.ShowModal()
+            dlg.Destroy()
+            return
 
         # check if there are precisely two pads selected
         selected_pads = [x for x in pcbnew.GetBoard().GetPads() if x.IsSelected()]

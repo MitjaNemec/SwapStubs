@@ -170,7 +170,7 @@ class Swapper:
         # TODO check wheather any of the pins to swap are marked as common pins in multi unit symbol
 
         # find matching labels
-        # TODO grab any kind of labels (local, global, hierarchical)
+        # TODO grab any kind of labels (local, global, hierarchical) - then swap label type as needed
         # todo grab location of this data to modify it later
         net_1 = []
         net_2 = []
@@ -215,7 +215,7 @@ class Swapper:
         logger.info(f"closest label 1: {repr(closest_net_1)}")
         logger.info(f"closest label 2: {repr(closest_net_2)}")
 
-        # TODO figure out the orientation and fix them apropriately
+        # TODO figure out the orientation and fix them appropriately
         # TODO add support for swapping labels on different symbols
         # TODO add support for swapping labels on different schematic pages
 
