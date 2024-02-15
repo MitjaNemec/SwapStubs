@@ -30,6 +30,7 @@ cp action_swap_stubs.py plugins
 cp error_dialog_GUI.py plugins
 cp swap_stubs.py plugins
 cp version.txt plugins
+cp sexpdata.py plugins
 mkdir resources
 cp swap_stubs.png resources/icon.png
 
