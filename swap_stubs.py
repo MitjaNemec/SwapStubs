@@ -96,7 +96,7 @@ class Swapper:
 
         # get all file paths
         pcb_file = os.path.abspath(str(board.GetFileName()))
-        root_sch_file = os.path.abspath(str(board.GetFileName()).replace(".kicad_pcb", ".sch"))
+        root_sch_file = os.path.abspath(str(board.GetFileName()).replace(".kicad_pcb", ".kicad_sch"))
         prj_folder = os.path.dirname(pcb_file)
 
         logger.info("main sch file is: " + root_sch_file)
@@ -189,7 +189,7 @@ class Swapper:
                         net_2_indices.append(item_index)
 
         logger.info(f"net 1 labels: {repr(net_1)}")
-        logger.info(f"net 2 labels: {repr(net_1)}")
+        logger.info(f"net 2 labels: {repr(net_2)}")
 
         # find closes label
         distance_max = 1000000000
