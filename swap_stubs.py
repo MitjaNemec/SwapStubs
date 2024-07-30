@@ -180,7 +180,7 @@ class Swapper:
             item = sch_raw[i]
             item_index = i
             if isinstance(item, list):
-                if str(item[0]) == 'label':
+                if str(item[0]) == 'label' or str(item[0]) == 'global_label' or str(item[0]) == 'hierarchical_label':
                     if item[1] == net_name_1:
                         net_1.append(item)
                         net_1_indices.append(item_index)
@@ -188,14 +188,22 @@ class Swapper:
                         net_2.append(item)
                         net_2_indices.append(item_index)
 
+        # TODO check if we found any labels at all and emit sensible error message
+
         logger.info(f"net 1 labels: {repr(net_1)}")
         logger.info(f"net 2 labels: {repr(net_2)}")
 
         # find closes label
         distance_max = 1000000000
         for n in net_1:
+            # find index of the position
+            for item in n:
+                if isinstance(item, list) and len(item) > 1:
+                    if 'at' in item[0]:
+                        net_1_location_index = n.index(item)
+                        break
             i = net_1.index(n)
-            net_pos = (n[2][1], n[2][2])
+            net_pos = (n[net_1_location_index][1], n[net_1_location_index][2])
             delta = tuple(x-y for x, y in zip(pin_1_pos, net_pos))
             distance = abs(delta[0]) + abs(delta[1])
             if distance < distance_max:
@@ -204,8 +212,14 @@ class Swapper:
                 distance_max = distance
         distance_max = 1000000000
         for n in net_2:
+            # find index of the position
+            for item in n:
+                if isinstance(item, list) and len(item) > 1:
+                    if 'at' in item[0]:
+                        net_2_location_index = n.index(item)
+                        break
             i = net_2.index(n)
-            net_pos = (n[2][1], n[2][2])
+            net_pos = (n[net_2_location_index][1], n[net_2_location_index][2])
             delta = tuple(x-y for x, y in zip(pin_2_pos, net_pos))
             distance = abs(delta[0]) + abs(delta[1])
             if distance < distance_max:
@@ -220,7 +234,7 @@ class Swapper:
         # TODO add support for swapping labels on different schematic pages
 
         # swap label positions
-        closest_net_1[2], closest_net_2[2] = closest_net_2[2], closest_net_1[2]
+        closest_net_1[net_1_location_index], closest_net_2[net_2_location_index] = closest_net_2[net_2_location_index], closest_net_1[net_1_location_index]
 
         # save the schematics
         writeTree(out_sch, sch_raw)
