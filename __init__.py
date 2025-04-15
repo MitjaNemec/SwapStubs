@@ -34,7 +34,7 @@ except Exception as e:
                       "Please take a look in the plugin folder for swap_stubs_error.log\n" \
                       "You can raise an issue on GitHub page.\n" \
                       "Please attach the .log file"
-            dlg = wx.MessageDialog(None, message, caption, wx.OK | wx.ICON_INFORMATION)
+            dlg = wx.MessageBox(message, caption, wx.OK | wx.ICON_ERROR)
             dlg.ShowModal()
             dlg.Destroy()
 

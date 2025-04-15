@@ -28,6 +28,7 @@ cp swap_stubs_light.png plugins
 cp __init__.py plugins
 cp action_swap_stubs.py plugins
 cp error_dialog_GUI.py plugins
+cp deprecation_dialog_GUI.py plugins
 cp swap_stubs.py plugins
 cp version.txt plugins
 cp sexpdata.py plugins
