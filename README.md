@@ -10,4 +10,4 @@ How to use:
 
 **Author :** doc.dr. Mitja Nemec
 
-**Date :** 2024-2025
+**Date :** 2025
